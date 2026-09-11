@@ -48,7 +48,10 @@ build-*/
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
+# NOTE: the CMake block ignores 'Makefile'. Ours is hand-written, not
+# generated, so un-ignore the top-level one or the repo will not build.
 Makefile
+!/Makefile
 install_manifest.txt
 compile_commands.json
 
@@ -67,3 +70,9 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# build output
+bin/
+
+# session scratch, not project content
+artifact_links.txt
