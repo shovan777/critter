@@ -1,7 +1,8 @@
 # Critter unit 3 — compute-bound MPC
 CC      ?= gcc
 STD      = -std=gnu11
-WARN     = -Wall -Wextra -Wno-unused-parameter
+WARN     = -Wall -Wextra -Wno-unused-parameter 
+# -fanalyzer
 OPT     ?= -O3 -ffast-math -fno-math-errno
 ARCH    ?= $(shell uname -m)
 

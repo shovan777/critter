@@ -76,3 +76,4 @@ bin/
 
 # session scratch, not project content
 artifact_links.txt
+analyzer_reports/
