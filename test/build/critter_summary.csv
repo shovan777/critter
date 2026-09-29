@@ -1,0 +1,13 @@
+month,month_name,reading_count,mean_temp_c,min_temp_c,max_temp_c
+1,January,3,46.133,19.250,99.900
+2,February,0,,,
+3,March,2,21.004,21.004,21.004
+4,April,0,,,
+5,May,0,,,
+6,June,2,25.880,25.880,25.880
+7,July,1,26.118,26.118,26.118
+8,August,0,,,
+9,September,0,,,
+10,October,0,,,
+11,November,2,18.410,18.410,18.410
+12,December,0,,,

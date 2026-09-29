@@ -1,0 +1,101 @@
+====================================================================================================
+CRITTER SAFETY-GUIDELINE SCORECARD
+Sources: SEI CERT C Coding Standard, 2016 Edition; NASA/JPL Power of 10 Rules
+====================================================================================================
+
+----------------------------------------------------------------------------------------------------
+MODULE  unit2/memory        [Unit 2 - memory / product]
+----------------------------------------------------------------------------------------------------
+  STANDARD    RULE      VERDICT  METHOD    TESTS
+  SEI CERT C  ARR30-C   FAIL     RUNTIME   MEM-01, MEM-19
+  NASA P10    Rule 7    FAIL     RUNTIME   MEM-02, MEM-05, MEM-06, MEM-20
+  SEI CERT C  INT30-C   FAIL     RUNTIME   MEM-03
+  SEI CERT C  EXP34-C   PASS     RUNTIME   MEM-04
+  SEI CERT C  FLP30-C   PASS     SCAN      MEM-07
+  SEI CERT C  INT33-C   NA       HUMAN     MEM-08
+  SEI CERT C  ERR33-C   FAIL     HUMAN     MEM-09
+  NASA P10    Rule 1    PASS     SCAN      MEM-10
+  NASA P10    Rule 2    FAIL     HUMAN     MEM-11
+  NASA P10    Rule 3    REVIEW   HUMAN     MEM-12
+  NASA P10    Rule 4    FAIL     SCAN      MEM-13
+  NASA P10    Rule 5    FAIL     SCAN      MEM-14
+  NASA P10    Rule 6    PASS     SCAN      MEM-15
+  NASA P10    Rule 8    PASS     SCAN      MEM-16
+  NASA P10    Rule 9    FAIL     SCAN      MEM-17
+  NASA P10    Rule 10   PASS     COMPILE   MEM-18
+  (neither)   UNMAPPED  FINDING  RUNTIME   MEM-21
+
+  rules scored 15   pass 6   fail 8   review 1   not-applicable 1
+  CONFORMANCE  40% of applicable rules pass
+  FINDINGS     9 total: 0 compiler-detectable, 9 needing a written test or a human (100%)
+  UNMAPPED     1 demonstrated defect(s) with no rule in either standard
+  EFFORT       59 method-cost points across 21 tests
+  BAND         D - redesign
+               at least one finding constrains the architecture (heap after init, function pointers, or unbounded loops), so hardening is a rewrite of this module, not a patch
+
+----------------------------------------------------------------------------------------------------
+MODULE  unit1/io        [Unit 1 - I/O / product]
+----------------------------------------------------------------------------------------------------
+  STANDARD    RULE      VERDICT  METHOD    TESTS
+  SEI CERT C  SIG31-C   FAIL     COMPILE   IO-01
+  SEI CERT C  ERR33-C   FAIL     HUMAN     IO-02
+  SEI CERT C  EXP34-C   FAIL     COMPILE   IO-03
+  SEI CERT C  DCL31-C   FAIL     COMPILE   IO-04
+  NASA P10    Rule 1    PASS     SCAN      IO-05
+  NASA P10    Rule 2    FAIL     HUMAN     IO-06
+  NASA P10    Rule 3    FAIL     HUMAN     IO-07
+  NASA P10    Rule 4    FAIL     SCAN      IO-08
+  NASA P10    Rule 5    FAIL     SCAN      IO-09
+  NASA P10    Rule 6    FAIL     SCAN      IO-10
+  NASA P10    Rule 8    PASS     SCAN      IO-11
+  NASA P10    Rule 9    FAIL     SCAN      IO-12
+  NASA P10    Rule 10   FAIL     COMPILE   IO-13
+  Functional  OUTPUT-IN PASS     RUNTIME   IO-14
+  Functional  REPRODUCI PASS     RUNTIME   IO-15
+
+  rules scored 13   pass 2   fail 11   review 0   not-applicable 0
+  CONFORMANCE  15% of applicable rules pass
+  FINDINGS     11 total: 4 compiler-detectable, 7 needing a written test or a human (64%)
+  EFFORT       31 method-cost points across 15 tests
+  BAND         D - redesign
+               at least one finding constrains the architecture (heap after init, function pointers, or unbounded loops), so hardening is a rewrite of this module, not a patch
+
+----------------------------------------------------------------------------------------------------
+MODULE  unit3/compute        [Unit 3 - compute / product, whole unit]
+----------------------------------------------------------------------------------------------------
+  STANDARD    RULE      VERDICT  METHOD    TESTS
+  SEI CERT C  ERR33-C   FAIL     HUMAN     CMP-07
+  SEI CERT C  EXP34-C   FAIL     COMPILE   CMP-08
+  SEI CERT C  DCL31-C   FAIL     COMPILE   CMP-09
+  NASA P10    Rule 1    FAIL     SCAN      CMP-10
+  NASA P10    Rule 2    FAIL     HUMAN     CMP-11
+  NASA P10    Rule 3    REVIEW   HUMAN     CMP-12
+  NASA P10    Rule 4    FAIL     SCAN      CMP-13
+  NASA P10    Rule 5    FAIL     SCAN      CMP-14
+  NASA P10    Rule 6    PASS     SCAN      CMP-15
+  NASA P10    Rule 8    FAIL     SCAN      CMP-16
+  NASA P10    Rule 9    FAIL     SCAN      CMP-17
+  NASA P10    Rule 10   FAIL     COMPILE   CMP-18
+  SEI CERT C  MEM35-C   PASS     RUNTIME   CMP-04
+  SEI CERT C  FLP32-C   PASS     RUNTIME   CMP-01
+  NASA P10    Rule 7    FAIL     RUNTIME   CMP-02, CMP-03
+  Functional  REPRODUCI PASS     RUNTIME   CMP-05
+
+  rules scored 15   pass 3   fail 11   review 1   not-applicable 0
+  CONFORMANCE  20% of applicable rules pass
+  FINDINGS     12 total: 3 compiler-detectable, 9 needing a written test or a human (75%)
+  EFFORT       42 method-cost points across 17 tests
+  BAND         D - redesign
+               at least one finding constrains the architecture (heap after init, function pointers, or unbounded loops), so hardening is a rewrite of this module, not a patch
+
+====================================================================================================
+CROSS-MODULE SUMMARY   (cards are never merged; each is scored against its own role)
+====================================================================================================
+MODULE                 UNIT              RULES  PASS   CONF   FINDS  MANUAL EFFORT  BAND
+unit2/memory           Unit 2 - memory      15     6    40%       9    100%     59  D - redesign
+unit1/io               Unit 1 - I/O         13     2    15%      11     64%     31  D - redesign
+unit3/compute          Unit 3 - compute     15     3    20%      12     75%     42  D - redesign
+
+ACROSS ALL CARDS: 43 rule verdicts scored, 11 pass (26%), 30 fail, 2 review, 1 not applicable.
+1 demonstrated defects have no rule in either standard.
+Total verification effort: 132 method-cost points.

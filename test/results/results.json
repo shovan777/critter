@@ -1,0 +1,886 @@
+{
+  "generated_utc": "2026-09-16T05:57:12+00:00",
+  "sources": [
+    "SEI CERT C Coding Standard, 2016 Edition",
+    "NASA/JPL Power of 10 Rules"
+  ],
+  "method_costs": {
+    "COMPILE": 1,
+    "SCAN": 2,
+    "RUNTIME": 3,
+    "HUMAN": 5
+  },
+  "totals": {
+    "rule_verdicts": 54,
+    "passed": 14,
+    "failed": 37,
+    "review": 3,
+    "not_applicable": 3,
+    "findings": 40,
+    "compiler_detectable": 7,
+    "automation_rate_pct": 17.5,
+    "unmapped": 3,
+    "effort_points": 167,
+    "tests": 69
+  },
+  "caveat": "Conformance figures are a percentage of the rules tested (all 10 Power of 10 rules; 13 of 99 CERT rules), not of either standard in full. CERT rules were selected where a construct was present and a violation demonstrable, which biases that subset toward failure; the CERT and P10 pass rates are therefore not directly comparable.",
+  "cards": [
+    {
+      "module": "unit2/critter_mem.c",
+      "unit": "Unit 2 - memory",
+      "role": "product",
+      "rules": [
+        {
+          "standard": "SEI CERT C",
+          "rule": "ARR30-C",
+          "verdict": "FAIL",
+          "method": "RUNTIME",
+          "methods": [
+            "RUNTIME"
+          ],
+          "tests": [
+            "MEM-01",
+            "MEM-16"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 7",
+          "verdict": "FAIL",
+          "method": "RUNTIME",
+          "methods": [
+            "RUNTIME"
+          ],
+          "tests": [
+            "MEM-02",
+            "MEM-05",
+            "MEM-06",
+            "MEM-17"
+          ]
+        },
+        {
+          "standard": "SEI CERT C",
+          "rule": "INT30-C",
+          "verdict": "FAIL",
+          "method": "RUNTIME",
+          "methods": [
+            "RUNTIME"
+          ],
+          "tests": [
+            "MEM-03"
+          ]
+        },
+        {
+          "standard": "SEI CERT C",
+          "rule": "EXP34-C",
+          "verdict": "PASS",
+          "method": "RUNTIME",
+          "methods": [
+            "RUNTIME"
+          ],
+          "tests": [
+            "MEM-04"
+          ]
+        },
+        {
+          "standard": "SEI CERT C",
+          "rule": "FLP30-C",
+          "verdict": "PASS",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "MEM-07"
+          ]
+        },
+        {
+          "standard": "SEI CERT C",
+          "rule": "INT33-C",
+          "verdict": "NA",
+          "method": "HUMAN",
+          "methods": [
+            "HUMAN"
+          ],
+          "tests": [
+            "MEM-08"
+          ]
+        },
+        {
+          "standard": "SEI CERT C",
+          "rule": "ERR33-C",
+          "verdict": "FAIL",
+          "method": "HUMAN",
+          "methods": [
+            "HUMAN"
+          ],
+          "tests": [
+            "MEM-09"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 2",
+          "verdict": "FAIL",
+          "method": "HUMAN",
+          "methods": [
+            "HUMAN"
+          ],
+          "tests": [
+            "MEM-10"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 3",
+          "verdict": "REVIEW",
+          "method": "HUMAN",
+          "methods": [
+            "HUMAN"
+          ],
+          "tests": [
+            "MEM-11"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 4",
+          "verdict": "FAIL",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "MEM-12"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 5",
+          "verdict": "FAIL",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "MEM-13"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 9",
+          "verdict": "FAIL",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "MEM-14"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 10",
+          "verdict": "PASS",
+          "method": "COMPILE",
+          "methods": [
+            "COMPILE"
+          ],
+          "tests": [
+            "MEM-15"
+          ]
+        }
+      ],
+      "scored": 12,
+      "n_pass": 3,
+      "n_fail": 8,
+      "n_review": 1,
+      "n_na": 1,
+      "conformance": 0.25,
+      "findings": 9,
+      "auto": 0,
+      "manual": 9,
+      "manual_share": 1.0,
+      "effort": 53,
+      "n_tests": 18,
+      "band": "D - redesign",
+      "band_why": "at least one finding constrains the architecture (heap after init, function pointers, or unbounded loops), so hardening is a rewrite of this module, not a patch",
+      "unmapped": [
+        {
+          "test": "MEM-18",
+          "evidence": "9 physical lines became 10 readings (0 malformed reported). One 153-character line exceeded the 128-byte buffer; fgets split it at 127 bytes and BOTH halves parsed as valid, so the record 01/02/2023 03:04:05,99.900 -- which is in no input reading -- appears in critter_cleaned.txt. No rule in either standard covers silent record fabrication by buffer splitting: STR31-C is not violated because fgets does not overflow"
+        }
+      ],
+      "functional": []
+    },
+    {
+      "module": "unit3/mpc.c",
+      "unit": "Unit 3 - compute",
+      "role": "product",
+      "rules": [
+        {
+          "standard": "SEI CERT C",
+          "rule": "FLP32-C",
+          "verdict": "FAIL",
+          "method": "RUNTIME",
+          "methods": [
+            "RUNTIME"
+          ],
+          "tests": [
+            "MPC-01"
+          ]
+        },
+        {
+          "standard": "SEI CERT C",
+          "rule": "MEM35-C",
+          "verdict": "PASS",
+          "method": "RUNTIME",
+          "methods": [
+            "RUNTIME"
+          ],
+          "tests": [
+            "MPC-03"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 2",
+          "verdict": "REVIEW",
+          "method": "HUMAN",
+          "methods": [
+            "HUMAN",
+            "RUNTIME"
+          ],
+          "tests": [
+            "MPC-04",
+            "MPC-08"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 7",
+          "verdict": "FAIL",
+          "method": "RUNTIME",
+          "methods": [
+            "RUNTIME"
+          ],
+          "tests": [
+            "MPC-05"
+          ]
+        },
+        {
+          "standard": "SEI CERT C",
+          "rule": "DCL31-C",
+          "verdict": "FAIL",
+          "method": "COMPILE",
+          "methods": [
+            "COMPILE"
+          ],
+          "tests": [
+            "MPC-06"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 1",
+          "verdict": "FAIL",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "MPC-07"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 3",
+          "verdict": "REVIEW",
+          "method": "HUMAN",
+          "methods": [
+            "HUMAN"
+          ],
+          "tests": [
+            "MPC-12"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 4",
+          "verdict": "FAIL",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "MPC-09"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 5",
+          "verdict": "FAIL",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "MPC-10"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 10",
+          "verdict": "FAIL",
+          "method": "COMPILE",
+          "methods": [
+            "COMPILE"
+          ],
+          "tests": [
+            "MPC-11"
+          ]
+        }
+      ],
+      "scored": 10,
+      "n_pass": 1,
+      "n_fail": 7,
+      "n_review": 2,
+      "n_na": 0,
+      "conformance": 0.1,
+      "findings": 9,
+      "auto": 2,
+      "manual": 7,
+      "manual_share": 0.7777777777777778,
+      "effort": 30,
+      "n_tests": 12,
+      "band": "C+ - reviewer-led, heavy",
+      "band_why": "almost nothing here is machine-detectable; this module sets the schedule",
+      "unmapped": [
+        {
+          "test": "MPC-02",
+          "evidence": "crit_mpc_step returns status=0 (\"ok\") alongside a NaN command. Neither standard has a rule requiring a status code to be consistent with the payload it describes; a reviewer working only from rule lists will not be prompted to look for this"
+        }
+      ],
+      "functional": []
+    },
+    {
+      "module": "unit3/thermal.c",
+      "unit": "Unit 3 - compute",
+      "role": "product",
+      "rules": [
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 2",
+          "verdict": "PASS",
+          "method": "RUNTIME",
+          "methods": [
+            "RUNTIME",
+            "SCAN"
+          ],
+          "tests": [
+            "THM-01",
+            "THM-06"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 7",
+          "verdict": "FAIL",
+          "method": "RUNTIME",
+          "methods": [
+            "RUNTIME"
+          ],
+          "tests": [
+            "THM-02"
+          ]
+        },
+        {
+          "standard": "SEI CERT C",
+          "rule": "FLP32-C",
+          "verdict": "NA",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "THM-03"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 1",
+          "verdict": "PASS",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "THM-05"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 3",
+          "verdict": "PASS",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "THM-10"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 4",
+          "verdict": "PASS",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "THM-07"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 5",
+          "verdict": "FAIL",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "THM-08"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 10",
+          "verdict": "PASS",
+          "method": "COMPILE",
+          "methods": [
+            "COMPILE"
+          ],
+          "tests": [
+            "THM-09"
+          ]
+        }
+      ],
+      "scored": 7,
+      "n_pass": 5,
+      "n_fail": 2,
+      "n_review": 0,
+      "n_na": 1,
+      "conformance": 0.7142857142857143,
+      "findings": 2,
+      "auto": 0,
+      "manual": 2,
+      "manual_share": 1.0,
+      "effort": 19,
+      "n_tests": 10,
+      "band": "C+ - reviewer-led, heavy",
+      "band_why": "almost nothing here is machine-detectable; this module sets the schedule",
+      "unmapped": [
+        {
+          "test": "THM-04",
+          "evidence": "ua_coil=950 and ua_coil=0 both give T_air_hat=24.690472153 after 20 updates at full cooling demand: crit_est_update uses the literals 950.0/260.0/120.0 (thermal.c:207-209) and takes no crit_plant_t argument, so it cannot track the plant it is estimating. Neither standard has a rule against duplicating a constant"
+        }
+      ],
+      "functional": []
+    },
+    {
+      "module": "unit1/sensor_sim.c",
+      "unit": "Unit 1 - I/O",
+      "role": "behind hardware boundary",
+      "rules": [
+        {
+          "standard": "SEI CERT C",
+          "rule": "MSC30-C",
+          "verdict": "FAIL",
+          "method": "RUNTIME",
+          "methods": [
+            "RUNTIME"
+          ],
+          "tests": [
+            "SIM-01"
+          ]
+        },
+        {
+          "standard": "SEI CERT C",
+          "rule": "MSC32-C",
+          "verdict": "FAIL",
+          "method": "RUNTIME",
+          "methods": [
+            "RUNTIME"
+          ],
+          "tests": [
+            "SIM-02"
+          ]
+        },
+        {
+          "standard": "SEI CERT C",
+          "rule": "INT31-C",
+          "verdict": "FAIL",
+          "method": "RUNTIME",
+          "methods": [
+            "RUNTIME"
+          ],
+          "tests": [
+            "SIM-03",
+            "SIM-05"
+          ]
+        },
+        {
+          "standard": "SEI CERT C",
+          "rule": "ERR33-C",
+          "verdict": "FAIL",
+          "method": "RUNTIME",
+          "methods": [
+            "RUNTIME"
+          ],
+          "tests": [
+            "SIM-04"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 2",
+          "verdict": "NA",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "SIM-06"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 4",
+          "verdict": "PASS",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "SIM-10"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 3",
+          "verdict": "PASS",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "SIM-11"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 5",
+          "verdict": "FAIL",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "SIM-07"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 6",
+          "verdict": "PASS",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "SIM-08"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 10",
+          "verdict": "PASS",
+          "method": "COMPILE",
+          "methods": [
+            "COMPILE"
+          ],
+          "tests": [
+            "SIM-09"
+          ]
+        }
+      ],
+      "scored": 9,
+      "n_pass": 4,
+      "n_fail": 5,
+      "n_review": 0,
+      "n_na": 1,
+      "conformance": 0.4444444444444444,
+      "findings": 5,
+      "auto": 0,
+      "manual": 5,
+      "manual_share": 1.0,
+      "effort": 26,
+      "n_tests": 11,
+      "band": "C+ - reviewer-led, heavy",
+      "band_why": "almost nothing here is machine-detectable; this module sets the schedule",
+      "unmapped": [],
+      "functional": []
+    },
+    {
+      "module": "unit1/io_unit.c",
+      "unit": "Unit 1 - I/O",
+      "role": "product",
+      "rules": [
+        {
+          "standard": "SEI CERT C",
+          "rule": "SIG31-C",
+          "verdict": "FAIL",
+          "method": "COMPILE",
+          "methods": [
+            "COMPILE"
+          ],
+          "tests": [
+            "IO-01"
+          ]
+        },
+        {
+          "standard": "SEI CERT C",
+          "rule": "ERR33-C",
+          "verdict": "FAIL",
+          "method": "HUMAN",
+          "methods": [
+            "HUMAN"
+          ],
+          "tests": [
+            "IO-02"
+          ]
+        },
+        {
+          "standard": "SEI CERT C",
+          "rule": "EXP34-C",
+          "verdict": "FAIL",
+          "method": "COMPILE",
+          "methods": [
+            "COMPILE"
+          ],
+          "tests": [
+            "IO-03"
+          ]
+        },
+        {
+          "standard": "SEI CERT C",
+          "rule": "DCL31-C",
+          "verdict": "FAIL",
+          "method": "COMPILE",
+          "methods": [
+            "COMPILE"
+          ],
+          "tests": [
+            "IO-04"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 2",
+          "verdict": "FAIL",
+          "method": "HUMAN",
+          "methods": [
+            "HUMAN"
+          ],
+          "tests": [
+            "IO-05"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 3",
+          "verdict": "FAIL",
+          "method": "HUMAN",
+          "methods": [
+            "HUMAN"
+          ],
+          "tests": [
+            "IO-06"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 4",
+          "verdict": "FAIL",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "IO-11"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 5",
+          "verdict": "FAIL",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "IO-07"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 6",
+          "verdict": "FAIL",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "IO-08"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 9",
+          "verdict": "FAIL",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "IO-09"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 10",
+          "verdict": "FAIL",
+          "method": "COMPILE",
+          "methods": [
+            "COMPILE"
+          ],
+          "tests": [
+            "IO-10"
+          ]
+        }
+      ],
+      "scored": 11,
+      "n_pass": 0,
+      "n_fail": 11,
+      "n_review": 0,
+      "n_na": 0,
+      "conformance": 0.0,
+      "findings": 11,
+      "auto": 4,
+      "manual": 7,
+      "manual_share": 0.6363636363636364,
+      "effort": 27,
+      "n_tests": 13,
+      "band": "D - redesign",
+      "band_why": "at least one finding constrains the architecture (heap after init, function pointers, or unbounded loops), so hardening is a rewrite of this module, not a patch",
+      "unmapped": [],
+      "functional": [
+        {
+          "test": "IO-12",
+          "rule": "OUTPUT-INTEGRITY",
+          "verdict": "PASS"
+        },
+        {
+          "test": "IO-13",
+          "rule": "REPRODUCIBILITY",
+          "verdict": "PASS"
+        }
+      ]
+    },
+    {
+      "module": "unit3/perf.c+main.c",
+      "unit": "Unit 3 - compute",
+      "role": "harness, excluded",
+      "rules": [
+        {
+          "standard": "SEI CERT C",
+          "rule": "EXP34-C",
+          "verdict": "FAIL",
+          "method": "COMPILE",
+          "methods": [
+            "COMPILE"
+          ],
+          "tests": [
+            "HRN-01"
+          ]
+        },
+        {
+          "standard": "SEI CERT C",
+          "rule": "ERR33-C",
+          "verdict": "FAIL",
+          "method": "HUMAN",
+          "methods": [
+            "HUMAN"
+          ],
+          "tests": [
+            "HRN-02"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 8",
+          "verdict": "FAIL",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "HRN-03"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 9",
+          "verdict": "FAIL",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "HRN-04"
+          ]
+        },
+        {
+          "standard": "NASA P10",
+          "rule": "Rule 1",
+          "verdict": "PASS",
+          "method": "SCAN",
+          "methods": [
+            "SCAN"
+          ],
+          "tests": [
+            "HRN-05"
+          ]
+        }
+      ],
+      "scored": 5,
+      "n_pass": 1,
+      "n_fail": 4,
+      "n_review": 0,
+      "n_na": 0,
+      "conformance": 0.2,
+      "findings": 4,
+      "auto": 1,
+      "manual": 3,
+      "manual_share": 0.75,
+      "effort": 12,
+      "n_tests": 5,
+      "band": "D - redesign",
+      "band_why": "at least one finding constrains the architecture (heap after init, function pointers, or unbounded loops), so hardening is a rewrite of this module, not a patch",
+      "unmapped": [],
+      "functional": []
+    }
+  ]
+}
